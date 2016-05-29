@@ -1,0 +1,40 @@
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" version="2.4">
+	<servlet>
+		<servlet-name>HelloWorld</servlet-name>
+		<servlet-class>edu.upenn.cis.cis555.servlets.HelloWorld</servlet-class>
+	<init-param>
+		<param-name>greeting</param-name>
+		<param-value>Bonjour!</param-value>
+	</init-param>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>HelloWorld</servlet-name>
+		<url-pattern>/Hello</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>calculator</servlet-name>
+		<servlet-class>edu.upenn.cis.cis555.servlets.Calculator</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>calculator</servlet-name>
+		<url-pattern>/cis555/calculator</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>search</servlet-name>
+		<servlet-class>edu.upenn.cis.cis555.servlets.search</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>search</servlet-name>
+		<url-pattern>/cis555/search</url-pattern>
+	</servlet-mapping>
+	
+	<context-param>
+		<param-name>server</param-name>
+		<param-value>my455server</param-value>
+	</context-param>
+</web-app>
