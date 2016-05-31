@@ -13,19 +13,34 @@ import javax.servlet.http.HttpServletResponse;
  * HttpWorker reads request and generates response
  */
 
-public class HttpWorker implements Runnable {
+public class HttpTask implements Runnable {
 	Socket socket; //reference to the connection socket 
 	String root_path; 
 	String servletClassName; 
+	HttpRequest request; 
+	int taskId; 
 	
 	// constructor
-	public HttpWorker (Socket s, String root_dir) {
+	public HttpTask (Socket s, String root_dir, int id) {
 		this.socket = s; 
 		this.root_path = root_dir;  
+		this.taskId = id; 
 	}
 	
 	@Override
 	public void run() {
+		
+		// utility block for testing multithreading
+		for (int i=0; i<5; i++) {
+			long threadId = Thread.currentThread().getId(); 
+			System.out.println("Processing request " + taskId + " in Thread " + threadId);
+			try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		Scanner in = null; 
 		PrintWriter out= null; 
 		
@@ -33,16 +48,16 @@ public class HttpWorker implements Runnable {
 			in = new Scanner(socket.getInputStream());
 			out = new PrintWriter(socket.getOutputStream(), true);
 		
-			HttpRequest request = new HttpRequest(in);
-			request.printRequest();
+			request = new HttpRequest(in);
+			//request.printRequest();
 			
 			HttpResponse response = new HttpResponse(out, request, root_path);
 			
 			if (request.isNormal()) {
 				// check if match servlet class 
 				if ((servletClassName = WebXmlParser.servletClassName(request.getFilePath()))!= null) {			
-					HttpServletRequest servletReq = new MyHttpServletRequest(request);
-					HttpServletResponse servletRes = new MyHttpServletResponse(out); 
+					HttpServletRequest servletReq = new NewHttpServletRequest(request);
+					HttpServletResponse servletRes = new NewHttpServletResponse(out); 
 					
 					//System.out.println("class name: " + servletClassName);
 					
@@ -79,5 +94,10 @@ public class HttpWorker implements Runnable {
 	public HttpServlet createServlet() throws Exception {
 		Class servletClass = Class.forName(servletClassName); 
 		return (HttpServlet) servletClass.newInstance(); 
+	}
+	
+	// utility method, mainly for testing
+	public String getReq() {
+		return request.getMethod() + " " + request.getFilePath() + " HTTP/1.1";
 	}
 }

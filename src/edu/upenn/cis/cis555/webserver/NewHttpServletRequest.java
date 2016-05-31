@@ -22,12 +22,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-public class MyHttpServletRequest implements HttpServletRequest {
+public class NewHttpServletRequest implements HttpServletRequest {
 	
 	HttpRequest request_data; 
 	
 	// constructor
-	public MyHttpServletRequest(HttpRequest request) {
+	public NewHttpServletRequest(HttpRequest request) {
 		this.request_data = request; 
 	}
 

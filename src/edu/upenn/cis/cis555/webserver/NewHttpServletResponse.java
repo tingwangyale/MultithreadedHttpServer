@@ -9,12 +9,12 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 
-public class MyHttpServletResponse implements HttpServletResponse {
+public class NewHttpServletResponse implements HttpServletResponse {
 
 	String contentType = null; 
 	PrintWriter out; 
 	
-	public MyHttpServletResponse(PrintWriter out) {
+	public NewHttpServletResponse(PrintWriter out) {
 		this.out = out; 
 	}
 	

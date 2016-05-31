@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class HttpResponse {
-	
 	final static String CRLF = "\r\n"; // for convenience 
 	HttpRequest request; 
 	String root_path; 
@@ -98,29 +97,7 @@ public class HttpResponse {
 	}
 	
 	public void generatePostResponse() {
-		// TODO Post request response
-		// This is just a tentative example
-		
-//		int[] value = new int[2]; 
-//		int i=0; 
-//		for (String key: request.getParams().keySet()) {
-//			value[i++] = Integer.parseInt(request.getParams().get(key));
-//		}
-//		
-//		buildStatusLine();
-//		entityBody.append("<html><body>");
-//		entityBody.append("<p>");
-//		entityBody.append(String.valueOf(value[0] + value[1]));
-//		entityBody.append("</p>");
-//		entityBody.append("</body></html>");
-//		
-//		contentLength += String.valueOf(entityBody.toString().length());
-//		contentType += "text/html";
-//		buildHeaders(); 
-//		
-//		response.append(statusLine); 
-//		response.append(responseHeaders);
-//		response.append(entityBody.toString()); 
+		// TODO Post request response if servlet match not found
 	}
 	
 	public void buildStatusLine() {

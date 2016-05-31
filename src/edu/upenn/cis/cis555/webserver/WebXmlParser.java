@@ -11,6 +11,10 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.xml.sax.SAXException;
 
+/**
+ * This class parses web.xml using Handler
+ *
+ */
 public class WebXmlParser {
 	
 	private static String web_xml_path; 

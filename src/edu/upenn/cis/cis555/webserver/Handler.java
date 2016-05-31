@@ -4,6 +4,10 @@ import java.util.HashMap;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
+/**
+ * This class defines how web.xml should be parsed 
+ *
+ */
 
 public class Handler extends DefaultHandler {
 	
@@ -15,7 +19,6 @@ public class Handler extends DefaultHandler {
 	HashMap<String,String> m_servletsMapping; //maps url to servlet name, i.e. <url-pattern>
 	HashMap<String,String> m_contextParams; //stores the context parameters for the web app, i.e. <context-param>
 	HashMap<String,HashMap<String,String>> m_servletParams; //stores the config parameters for each servlet, i.e. <init-param>
-	
 	
 	public Handler() { 
 		m_servlets = new HashMap<>(); 

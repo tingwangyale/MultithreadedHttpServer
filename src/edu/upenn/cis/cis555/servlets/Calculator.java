@@ -29,14 +29,14 @@ public class Calculator extends HttpServlet {
 		response.setContentType("text/html");
 		try {
 			PrintWriter out = response.getWriter();
-//			int val1 = Integer.parseInt(request.getParameter("left"));
-//			int val2 = Integer.parseInt(request.getParameter("right"));
-//			String sum = String.valueOf(val1 + val2);
+			int val1 = Integer.parseInt(request.getParameter("left").trim());
+			int val2 = Integer.parseInt(request.getParameter("right").trim());
+			String sum = String.valueOf(val1 + val2);
 			
-			String val1 = request.getParameter("left");
-			String val2 = request.getParameter("right");
-			String sum = val1.concat(val2);
-			out.println("<html><body><p>");
+//			String val1 = request.getParameter("left");
+//			String val2 = request.getParameter("right");
+//			String sum = val1.concat(val2);
+			out.println("<html><body><p>The sum is: ");
 			out.println(sum);
 			out.println("</p></body></html>");
 		} catch (IOException e) {

@@ -21,14 +21,16 @@ public class HttpRequest {
 		this.in = input; 
 		headers = new HashMap<>(); 
 		params = new HashMap<>(); 
-		parseRequestLine();
-		parseHeaders(); 
-		if (method.equals("POST") && headers.containsKey("content-length")) {
-			parseRequestBody(); 
+		if (input.hasNext()) {
+			parseRequestLine();
+			parseHeaders(); 
+			if (method.equals("POST") && headers.containsKey("content-length")) {
+				parseRequestBody(); 
+			}
 		}
 	}
-
-	// print parts of the request
+	
+	// utility method for testing, ignore it
 	public void printRequest() {
 //		System.out.println("Request line: " + request_line);
 		System.out.println("Headers: ");
@@ -94,7 +96,8 @@ public class HttpRequest {
 			headers.put(line_items[0].trim().toLowerCase(), line_items[1].trim()); 
 		}
 		
-		if (version.equals("HTTP/1.1") && !headers.containsKey("host")) {
+		System.out.println("version= " + version);
+		if (version != null && version.equals("HTTP/1.1") && !headers.containsKey("host")) {
 			isNormal = false; 
 		}
 	}
@@ -141,11 +144,6 @@ public class HttpRequest {
 		return rst; 
 	}
 	
-	public boolean servletMatch() {
-		// TODO Check if file path matches a servlet path mapping
-		return false; 
-	}
-	
 	public String getFilePath() {
 		return file_path;
 	}
@@ -177,8 +175,8 @@ public class HttpRequest {
 		return null; 
 	}
 	
-	
 	public HashMap<String, String> getParams() {
 		return params; 
 	}
+	
 }
